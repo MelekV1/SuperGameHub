@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} homespace | {{ parent() }} {% endblock %}
+
+{% block body %}
+<img src ="{{asset('/images/console.jpg') }}" alt="Game-Console" />
+<h1>Welcome to SGH<h1>
+<p> IT's currently {{ 'now'|date('h:i A')}}
+
+{% endblock %}

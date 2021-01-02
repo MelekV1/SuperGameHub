@@ -2,6 +2,7 @@
 
 {# this tag only applies to the forms defined in this template #}
 {% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
+{% block title %} Create Article | {{ parent() }} {% endblock %}
 
 {% block body %}
 	<h1>Articles HUB</h1>

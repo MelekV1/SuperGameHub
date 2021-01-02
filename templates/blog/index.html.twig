@@ -1,21 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BlogController!{% endblock %}
+{% block title %} Articles | {{ parent() }} {% endblock %}
 
 {% block body %}
-<section class="articles">
+
+    <div class="d-flex flex-wrap">
+
     {% for article in articles %}
-        <article>
-            <h2>{{article.title}}</h2>
-            <div class="metadata">Ecrit le {{article.createdAt | date('d/m/y')}} à {{article.createdAt | date('H:i')}}</div>
-            <div class="content">
-                <img src="{{article.Image}}" width="350px" height="150px" alt=""/>
-                <br/>
-                {{article.content | raw}}
-                <br/>
-                <a href="{{ path('blog_show',{'id':article.id})}}" class="btn btn-primary">Lire plus</a>
+        <div class="col-sm-4 my-4">
+            <div class="card text-white border-primary rounded shadow-sm " >
+
+                <h6 class="card-header text-warning">{{article.title}}</h6>
+
+                <img src="{{article.Image}}" alt="{{article.title}}" 
+                class="d-block user-select-none"
+                width="100%" height="150px"  />
+
+                <div class="card-body">
+                    <p class="card-text">{{article.content |slice(0, 70) | raw}} . . .</p>
+                </div>
+
+                <div class="card-body">
+                    <a href="{{ path('blog_show',{'id':article.id})}}" class="btn btn-outline-primary card-link">Read</a>
+                </div>
+
+                <div class="card-footer text-muted">
+                    Added in {{article.createdAt | date('d/m/y')}} at {{article.createdAt | date('H:i')}}
+                </div>
+                
             </div>
-        </article>
+
+        </div>
     {% endfor %}
-</section>
+
+</div>
+
+
 {% endblock %}

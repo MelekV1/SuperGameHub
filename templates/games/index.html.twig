@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Games | {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h1>All Games</h1>
+    <p>  {{ pluralize(pins| length,'Game available' ,'Games avilable' ) }}</p>
+    <hr>
+    {% for pin in pins %}
+        
+        <h2>{{pin.title}}</h2>
+        <p>{{pin.description}}</p>
+        <a href="{{path('app_game_show',{id:pin.id} ) }}">See more</a>
+    {% endfor %}
+{% endblock %}

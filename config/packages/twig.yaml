@@ -2,4 +2,6 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     # config/packages/twig.yaml
     form_themes: ['bootstrap_4_layout.html.twig']
+    date:
+        timezone: Africa/Tunis
 

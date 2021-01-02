@@ -1,44 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{app.request.locale}}">
     <head>
-        <link 
-            href="https://bootswatch.com/4/cyborg/bootstrap.min.css" 
-            rel="stylesheet"/>
+        
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="icon" href="./logo.png"  type="image/png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}SGH {% endblock %}</title>
+        {% block stylesheets %}
+        <link href="https://bootswatch.com/4/cyborg/bootstrap.min.css"  rel="stylesheet"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="{{path('home')}}">Super Game Hub</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" 
-                       href="{{path('blog')}}">Articles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" 
-                       href="{{path('blog_create')}}">Create Articles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" 
-                       href="#">Games</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" 
-                       href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        {% block body %}{% endblock %}
-    </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="{{path('home')}}">Super Game Hub</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                        href="{{path('blog')}}">Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                        href="{{path('blog_create')}}">Create Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                        href="{{path('app_games')}}">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                        href="{{path('app_about')}}">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                        href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-        {% block javascripts %}{% endblock %}
+        <div class="container my-4">
+          {% block body %}{% endblock %}
+        </div>
+        <footer class="text-center">
+            <p class="text-primary">
+                <span class="text-gray-100 ">
+                    <i class="fas fa-code"></i> 
+                </span>with 
+                <span class="text-red-500">
+                    <i class="fas fa-heart"></i> 
+                </span>by THE-TEAM<p class="text-primary">
+            <p> IT's currently {{ 'now'|date('h:i A')}}
+            <p class="text-primary">
+                &copy; copyright  {{ 'now'|date('Y')}}
+                &middot; <a href ="{{ path('app_home')}}">homespace</a>
+            </p>
+        </footer>
+        {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        {% endblock %}
     </body>
 </html>

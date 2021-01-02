@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{pin.title}} | {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h2>{{pin.title}}</h2>
+    <p>{{pin.description}}</p>
+
+    <a href="{{path('app_games') }}">Go back</a>
+
+{% endblock %}
