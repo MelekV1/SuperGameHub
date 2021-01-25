@@ -3,9 +3,13 @@
 {% block title %} {{pin.title}} | {{ parent() }} {% endblock %}
 
 {% block body %}
-    <h2>{{pin.title}}</h2>
-    <p>{{pin.description}}</p>
-
-    <a href="{{path('app_games') }}">Go back</a>
-
+    <div class="card bg-dark text-white">
+        <img class="card-img" src={{pin.image}} alt="Game image">
+        <div class="card-img-overlay">
+            <p class="text-white bg-dark h2">{{pin.description}}</p>
+            <a href={{pin.linkPlat}}> <p class="card-text text-info h2">Go to store</p></a>
+            <a href="{{path('app_games') }}"> <p class="card-text text-info h2">Go back</p></a>
+        </div>
+    </div>
+    
 {% endblock %}

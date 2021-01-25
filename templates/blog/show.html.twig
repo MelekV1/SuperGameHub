@@ -1,17 +1,52 @@
 {% extends 'base.html.twig' %}
 {% block title %} Article | {{ parent() }} {% endblock %}
 {% block body %}
-	<article>
-		<h2>{{article.title}}</h2>
-		<div class="metadata">Ecrit le
-			{{article.createdAt | date('d/m/y')}}
-			à
-			{{article.createdAt | date('H:i')}}</div>
-		<div class="content">
-			<img src="{{article.Image}}" width="500px" height="300px" alt=""/>
-			<hr/>
-			<p>{{article.content}}</p>
-			<br/>
-		</div>
-	</article>
+	<div class="border border-primary p-1" >
+		<article>
+			<h2 class="text-center text-info" >{{article.title |slice(0,11) }}</h2>
+			<div class="metadata">Written in
+				{{article.createdAt | date('d/m/y')}}
+				at
+				{{article.createdAt | date('H:i')}}</div>
+			<div class="content">
+				<img src="{{article.Image}}" width="500px" height="300px" alt=""/>
+				<p class="h5 p-3 text-info">
+					Article category 
+					<small class="text-muted">{{article.category.title |slice(0,11)}}</small>
+				</p>
+				<hr/>
+				<p class="text-justify" >{{article.content}}</p>
+				<br/>
+			</div>
+		</article>
+	</div>
+	<div class="border border-primary p-1 mt-1" >
+		<section id="commentaires">
+			<h1 class="text-info bg-dark display-5 p-5 center" >Comments </h1>	
+			<hr>
+			<p class="h5 text-info pl-5">{{ article.comments | length }} are posted</p>
+			<hr>
+			{% for comment in article.comments %}
+				<div class="comment rounded border border-warning p-1 m-1">
+					<div class = "">
+						<div class "author">
+							<p class="text-info">{{comment.author}} (<small class="text-muted">{{comment.createdAt | date('d/m/Y à H:i')}} </small>)</p>
+						</div>
+						<div class="commentText">
+							{{comment.content | raw | slice(0,100)}}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			{% if app.user %}
+			{{form_start(commentForm)}}
+			{{form_row(commentForm.author,{'attr':{'placeholder':'your name'}})}}
+			{{form_row(commentForm.content,{'attr':{'placeholder':'Comment . . .'}})}}
+			<button type="submit" class="btn btn-success">Comment</button>
+			{{form_end(commentForm)}}
+			{% else %}
+				<button type="submit" class="btn btn-warning"><a class="text-decoration-none" href="{{path('security_login')}}">Login to comment</a></button>
+			{% endif %}
+		</section>
+	</div>
 {% endblock  %}

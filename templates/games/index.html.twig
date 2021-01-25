@@ -3,13 +3,25 @@
 {% block title %} Games | {{ parent() }} {% endblock %}
 
 {% block body %}
-    <h1>All Games</h1>
-    <p>  {{ pluralize(pins| length,'Game available' ,'Games avilable' ) }}</p>
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">All Games</h4>
+    <p>SuperGameHUB est l'endroit idéal pour Consulter, jouer et parler jeu vidéo</p>
     <hr>
-    {% for pin in pins %}
-        
-        <h2>{{pin.title}}</h2>
-        <p>{{pin.description}}</p>
-        <a href="{{path('app_game_show',{id:pin.id} ) }}">See more</a>
+    <p class="mb-0">{{ pluralize(Games| length,'Game available' ,'Games avilable' ) }}</p>
+    </div>
+    <div class="d-flex flex-wrap row mb-5">
+    {% for pin in Games %}
+        <div class="col-sm-4 my-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src={{pin.image}}  width="100%" height="150px" alt="Game Image">
+                <h5 class="card-title">{{pin.title}}</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{pin.genre}}</li>
+                    <li class="list-group-item">{{pin.price}} $</li>
+                </ul>
+                <a href="{{path('app_game_show',{id:pin.id})}}" class="btn btn-primary">See more</a>
+            </div>
+        </div>
     {% endfor %}
+    </div>
 {% endblock %}

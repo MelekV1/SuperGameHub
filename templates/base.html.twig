@@ -2,19 +2,22 @@
 <html lang="{{app.request.locale}}">
     <head>
         
+
+        {% block stylesheets %}
         <meta charset="UTF-8">
         <link rel="icon" href="./logo.png"  type="image/png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}SGH {% endblock %}</title>
-        {% block stylesheets %}
         <link href="https://bootswatch.com/4/cyborg/bootstrap.min.css"  rel="stylesheet"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">     
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         {% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">
+                <img src="./logo.png" width="30" height="30" alt="">
+            </a>
             <a class="navbar-brand" href="{{path('home')}}">Super Game Hub</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,20 +30,31 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" 
-                        href="{{path('blog_create')}}">Create Articles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" 
                         href="{{path('app_games')}}">Games</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" 
                         href="{{path('app_about')}}">About us</a>
                     </li>
+                    {% if not app.user %}
                     <li class="nav-item">
                         <a class="nav-link" 
-                        href="#">Contact</a>
+                        href="{{path('security_signup')}}">Join us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                        href="{{path('security_login')}}">Sign in</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                        href="{{path('blog_create')}}">Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                        href="{{path('security_logout')}}">Logout</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -49,6 +63,7 @@
           {% block body %}{% endblock %}
         </div>
         <footer class="text-center">
+            <img src ="{{asset('/logo.png') }}" class="img-thumbnail" alt="SGH" width="200" height="200" />
             <p class="text-primary">
                 <span class="text-gray-100 ">
                     <i class="fas fa-code"></i> 
